@@ -1,187 +1,73 @@
 package com.example.porchpascual.tictactoe;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button b1, b2, b3, b4, b5, b6, b7, b8, b9;
+    @BindView(R.id.b1) Button btn1;
+    @BindView(R.id.b2) Button btn2;
+    @BindView(R.id.b3) Button btn3;
+    @BindView(R.id.b4) Button btn4;
+    @BindView(R.id.b5) Button btn5;
+    @BindView(R.id.b6) Button btn6;
+    @BindView(R.id.b7) Button btn7;
+    @BindView(R.id.b8) Button btn8;
+    @BindView(R.id.b9) Button btn9;
 
+    String pandaUnicode = "\uD83D\uDC3C";
+    String shipUnicode = "\uD83D\uDEA2";
     int turn;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        b1 = (Button) findViewById(R.id.b1);
-        b2 = (Button) findViewById(R.id.b2);
-        b3 = (Button) findViewById(R.id.b3);
-        b4 = (Button) findViewById(R.id.b4);
-        b5 = (Button) findViewById(R.id.b5);
-        b6 = (Button) findViewById(R.id.b6);
-        b7 = (Button) findViewById(R.id.b7);
-        b8 = (Button) findViewById(R.id.b8);
-        b9 = (Button) findViewById(R.id.b9);
+        ButterKnife.bind(this);
 
         turn = 1;
+    }
 
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (b1.getText().toString().equals("")) {
-                    if (turn == 1) {
-                        turn = 2;
-                        b1.setText("P");
-                    } else if (turn == 2) {
-                        turn = 1;
-                        b1.setText("S");
-                    }
-
-                }
-                endGame();
+    @OnClick({R.id.b1, R.id.b2, R.id.b3, R.id.b4, R.id.b5, R.id.b6, R.id.b7, R.id.b8, R.id.b9})
+    public void onClickButtons (Button btn) {
+        if (btn.getText().toString().equals("")) {
+            String unicode = "";
+            if (turn == 1) {
+                turn = 2;
+                unicode = pandaUnicode;
+            } else if (turn == 2) {
+                turn = 1;
+                unicode = shipUnicode;
             }
-        });
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (b2.getText().toString().equals("")) {
-                    if (turn == 1) {
-                        turn = 2;
-                        b2.setText("P");
-                    } else if (turn == 2) {
-                        turn = 1;
-                        b2.setText("S");
-                    }
+            btn.setText(unicode);
+            setDefaultLocale(getApplicationContext(), "en");
+        }
+        endGame();
+    }
 
-                }
-                endGame();
-            }
-        });
-        b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (b3.getText().toString().equals("")) {
-                    if (turn == 1) {
-                        turn = 2;
-                        b3.setText("P");
-                    } else if (turn == 2) {
-                        turn = 1;
-                        b3.setText("S");
-                    }
+    private void setDefaultLocale(Context ctx, String locale) {
+        Locale loc1 = new Locale(locale.trim());
+        Locale.setDefault(loc1);
 
-                }
-                endGame();
+        Configuration config = new Configuration();
+        config.locale = loc1;
 
-            }
-        });
-        b4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (b4.getText().toString().equals("")) {
-                    if (turn == 1) {
-                        turn = 2;
-                        b4.setText("P");
-                    } else if (turn == 2) {
-                        turn = 1;
-                        b4.setText("S");
-                    }
-
-                }
-                endGame();
-
-            }
-        });
-        b5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (b5.getText().toString().equals("")) {
-                    if (turn == 1) {
-                        turn = 2;
-                        b5.setText("P");
-                    } else if (turn == 2) {
-                        turn = 1;
-                        b5.setText("S");
-                    }
-
-                }
-                endGame();
-
-            }
-        });
-        b6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (b6.getText().toString().equals("")) {
-                    if (turn == 1) {
-                        turn = 2;
-                        b6.setText("P");
-                    } else if (turn == 2) {
-                        turn = 1;
-                        b6.setText("S");
-                    }
-
-                }
-                endGame();
-
-            }
-        });
-        b7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (b7.getText().toString().equals("")) {
-                    if (turn == 1) {
-                        turn = 2;
-                        b7.setText("P");
-                    } else if (turn == 2) {
-                        turn = 1;
-                        b7.setText("S");
-                    }
-
-                }
-                endGame();
-
-            }
-        });
-        b8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (b8.getText().toString().equals("")) {
-                    if (turn == 1) {
-                        turn = 2;
-                        b8.setText("P");
-                    } else if (turn == 2) {
-                        turn = 1;
-                        b8.setText("S");
-                    }
-
-                }
-                endGame();
-
-            }
-        });
-        b9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (b9.getText().toString().equals("")) {
-                    if (turn == 1) {
-                        turn = 2;
-                        b9.setText("P");
-                    } else if (turn == 2) {
-                        turn = 1;
-                        b9.setText("S");
-                    }
-
-                }
-                endGame();
-
-            }
-        });
-
+        ctx.getResources().updateConfiguration(config, ctx.getResources().getDisplayMetrics());
+        loc1 = null;
+        config = null;
     }
 
     public void endGame() {
@@ -189,88 +75,92 @@ public class MainActivity extends AppCompatActivity {
 
         boolean end = false;
 
-        A = b1.getText().toString();
-        B = b2.getText().toString();
-        C = b3.getText().toString();
+        A = btn1.getText().toString();
+        B = btn2.getText().toString();
+        C = btn3.getText().toString();
 
-        D = b4.getText().toString();
-        E = b5.getText().toString();
-        F = b6.getText().toString();
+        D = btn4.getText().toString();
+        E = btn5.getText().toString();
+        F = btn6.getText().toString();
 
-        G = b7.getText().toString();
-        H = b8.getText().toString();
-        I = b9.getText().toString();
+        G = btn7.getText().toString();
+        H = btn8.getText().toString();
+        I = btn9.getText().toString();
 
-        if (A.equals("P")&& B.equals("P")&& C.equals("P")) {
-            Toast.makeText(MainActivity.this, "Panda Wins!", Toast.LENGTH_LONG).show();
+        if (A.equals(pandaUnicode)&& B.equals(pandaUnicode)&& C.equals(pandaUnicode)) {
+            displayWhoWon(pandaUnicode);
             end = true;
         }
-        if (A.equals("P")&& E.equals("P")&& I.equals("P")) {
-            Toast.makeText(MainActivity.this, "Panda Wins!", Toast.LENGTH_LONG).show();
+        if (A.equals(pandaUnicode)&& E.equals(pandaUnicode)&& I.equals(pandaUnicode)) {
+            displayWhoWon(pandaUnicode);
             end = true;
         }
-        if (A.equals("P")&& D.equals("P")&& G.equals("P")) {
-            Toast.makeText(MainActivity.this, "Panda Wins!", Toast.LENGTH_LONG).show();
+        if (A.equals(pandaUnicode)&& D.equals(pandaUnicode)&& G.equals(pandaUnicode)) {
+            displayWhoWon(pandaUnicode);
             end = true;
         }
-        if (B.equals("P")&& E.equals("P")&& H.equals("P")) {
-            Toast.makeText(MainActivity.this, "Panda Wins!", Toast.LENGTH_LONG).show();
+        if (B.equals(pandaUnicode)&& E.equals(pandaUnicode)&& H.equals(pandaUnicode)) {
+            displayWhoWon(pandaUnicode);
             end = true;
         }
-        if (C.equals("P")&& F.equals("P")&& I.equals("P")) {
-            Toast.makeText(MainActivity.this, "Panda Wins!", Toast.LENGTH_LONG).show();
+        if (C.equals(pandaUnicode)&& F.equals(pandaUnicode)&& I.equals(pandaUnicode)) {
+            displayWhoWon(pandaUnicode);
             end = true;
         }
-        if (D.equals("P")&& E.equals("P")&& F.equals("P")) {
-            Toast.makeText(MainActivity.this, "Panda Wins!", Toast.LENGTH_LONG).show();
+        if (D.equals(pandaUnicode)&& E.equals(pandaUnicode)&& F.equals(pandaUnicode)) {
+            displayWhoWon(pandaUnicode);
             end = true;
         }
-        if (G.equals("P")&& H.equals("P")&& I.equals("P")) {
-            Toast.makeText(MainActivity.this, "Panda Wins!", Toast.LENGTH_LONG).show();
+        if (G.equals(pandaUnicode)&& H.equals(pandaUnicode)&& I.equals(pandaUnicode)) {
+            displayWhoWon(pandaUnicode);
             end = true;
         }
 
-
-        if (A.equals("S")&& B.equals("S")&& C.equals("S")) {
-            Toast.makeText(MainActivity.this, "Ship Wins!!", Toast.LENGTH_LONG).show();
+        // SHIP PATTERN
+        if (A.equals(shipUnicode)&& B.equals(shipUnicode)&& C.equals(shipUnicode)) {
+            displayWhoWon(shipUnicode);
             end = true;
         }
-        if (A.equals("S")&& E.equals("S")&& I.equals("S")) {
-            Toast.makeText(MainActivity.this, "Ship Wins!", Toast.LENGTH_LONG).show();
+        if (A.equals(shipUnicode)&& E.equals(shipUnicode)&& I.equals(shipUnicode)) {
+            displayWhoWon(shipUnicode);
             end = true;
         }
-        if (A.equals("S")&& D.equals("S")&& G.equals("S")) {
-            Toast.makeText(MainActivity.this, "Ship Wins!", Toast.LENGTH_LONG).show();
+        if (A.equals(shipUnicode)&& D.equals(shipUnicode)&& G.equals(shipUnicode)) {
+            displayWhoWon(shipUnicode);
             end = true;
         }
-        if (B.equals("S")&& E.equals("S")&& H.equals("S")) {
-            Toast.makeText(MainActivity.this, "Ship Wins!", Toast.LENGTH_LONG).show();
+        if (B.equals(shipUnicode)&& E.equals(shipUnicode)&& H.equals(shipUnicode)) {
+            displayWhoWon(shipUnicode);
             end = true;
         }
-        if (C.equals("S")&& F.equals("S")&& I.equals("S")) {
-            Toast.makeText(MainActivity.this, "Ship Wins!", Toast.LENGTH_LONG).show();
+        if (C.equals(shipUnicode)&& F.equals(shipUnicode)&& I.equals(shipUnicode)) {
+            displayWhoWon(shipUnicode);
             end = true;
         }
-        if (D.equals("S")&& E.equals("S")&& F.equals("S")) {
-            Toast.makeText(MainActivity.this, "Ship Wins!", Toast.LENGTH_LONG).show();
+        if (D.equals(shipUnicode)&& E.equals(shipUnicode)&& F.equals(shipUnicode)) {
+            displayWhoWon(shipUnicode);
             end = true;
         }
-        if (G.equals("S")&& H.equals("S")&& I.equals("S")) {
-            Toast.makeText(MainActivity.this, "Ship Wins!", Toast.LENGTH_LONG).show();
+        if (G.equals(shipUnicode)&& H.equals(shipUnicode)&& I.equals(shipUnicode)) {
+            displayWhoWon(shipUnicode);
             end = true;
         }
 
         if (end) {
-            b1.setEnabled(false);
-            b2.setEnabled(false);
-            b3.setEnabled(false);
-            b4.setEnabled(false);
-            b5.setEnabled(false);
-            b6.setEnabled(false);
-            b7.setEnabled(false);
-            b8.setEnabled(false);
-            b9.setEnabled(false);
+            btn1.setEnabled(false);
+            btn2.setEnabled(false);
+            btn3.setEnabled(false);
+            btn4.setEnabled(false);
+            btn5.setEnabled(false);
+            btn6.setEnabled(false);
+            btn7.setEnabled(false);
+            btn8.setEnabled(false);
+            btn9.setEnabled(false);
         }
+    }
+
+    private void displayWhoWon(String unicode) {
+        Toast.makeText(MainActivity.this, unicode + " wins!", Toast.LENGTH_LONG).show();
     }
 
 }
